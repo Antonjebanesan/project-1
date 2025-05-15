@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact | M.Anton Jebanesan</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <style>
+   
+    .contact-card {
+      background: #fff;
+      border-radius: 1rem;
+      box-shadow: 0 4px 24px rgba(99,102,241,0.08);
+      padding: 2.5rem 2rem;
+      max-width: 500px;
+      margin: auto;
+      transition: background 0.3s, color 0.3s;
+    }
+    .form-control:focus {
+      border-color: #6366f1;
+      box-shadow: 0 0 0 0.2rem rgba(99,102,241,0.15);
+    }
+    .btn-primary {
+      background-color: #6366f1;
+      border: none;
+    }
+    .btn-primary:hover {
+      background-color: #4f46e5;
+    }
+    .footer-social a {
+      color: #6366f1;
+      margin: 0 0.5rem;
+      transition: color 0.2s;
+    }
+    .footer-social a:hover {
+      color: #4f46e5;
+    }
+    .spinner-border {
+      width: 1.5rem;
+      height: 1.5rem;
+      border-width: .2em;
+    }
+
+    /* Dark mode styles */
+    .dark-mode body {
+      background: linear-gradient(135deg, #18181b 0%, #312e81 100%);
+      color: #e5e7eb;
+    }
+    .dark-mode .motivational {
+      color: #a5b4fc;
+    }
+    .dark-mode .contact-card {
+      background: #232336;
+      color: #e5e7eb;
+      box-shadow: 0 4px 24px rgba(49,46,129,0.18);
+    }
+    .dark-mode .form-control {
+      background: #18181b;
+      color: #e5e7eb;
+      border-color: #6366f1;
+    }
+    .dark-mode .form-control:focus {
+      border-color: #a5b4fc;
+      box-shadow: 0 0 0 0.2rem rgba(99,102,241,0.25);
+      background: #232336;
+      color: #fff;
+    }
+    .dark-mode .btn-primary {
+      background-color: #818cf8;
+      color: #18181b;
+    }
+    .dark-mode .btn-primary:hover {
+      background-color: #6366f1;
+      color: #fff;
+    }
+    .dark-mode .footer-social a {
+      color: #a5b4fc;
+    }
+    .dark-mode .footer-social a:hover {
+      color: #818cf8;
+    }
+    .dark-mode .bg-white {
+      background-color: #232336 !important;
+      color: #e5e7eb !important;
+    }
+    .dark-mode .text-primary {
+      color: #a5b4fc !important;
+    }
+    .dark-mode .navbar-light .navbar-brand,
+    .dark-mode .navbar-light .navbar-nav .nav-link {
+      color: #e5e7eb !important;
+    }
+    .dark-mode .navbar-light .navbar-nav .nav-link.active {
+      color: #a5b4fc !important;
+    }
+    .dark-mode .alert-danger {
+      background: #7f1d1d;
+      color: #fff;
+      border-color: #ef4444;
+    }
+    .dark-mode .alert-success {
+      background: #166534;
+      color: #fff;
+      border-color: #22c55e;
+    }
+    .dark-mode .bg-primary {
+      background-color: #6366f1 !important;
+      color: #fff !important;
+    }
+    .dark-mode .text-white {
+      color: #fff !important;
+    }
+    .dark-mode .text-muted {
+      color: #a1a1aa !important;
+    }
+    .dark-mode .navbar,
+    .dark-mode .shadow-sm {
+      box-shadow: 0 2px 8px rgba(49,46,129,0.18) !important;
+    }
+
+    /* Toggle button */
+    .theme-toggle {
+      cursor: pointer;
+      border: none;
+      background: none;
+      font-size: 1.3rem;
+      color: #6366f1;
+      transition: color 0.2s;
+    }
+    .dark-mode .theme-toggle {
+      color: #a5b4fc;
+    }
+    .theme-toggle:focus {
+      outline: none;
+    }
+  </style>
+</head>
+<body>
+  <div x-data="contactForm()" :class="dark ? 'dark-mode' : ''">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+      <div class="container">
+        <a class="navbar-brand fw-bold text-primary" href="home.html">M.Anton Jebanesan</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="home.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+            <li class="nav-item"><a class="nav-link" href="../index.html">Projects</a></li>
+            <li class="nav-item"><a class="nav-link active text-primary" href="contact.html">Contact</a></li>
+          </ul>
+          <button class="theme-toggle ms-3" @click="dark = !dark" x-bind:aria-label="dark ? 'Switch to light mode' : 'Switch to dark mode'">
+            <span x-show="!dark"><i class="fas fa-moon"></i></span>
+            <span x-show="dark"><i class="fas fa-sun"></i></span>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Motivational Quote -->
+    <div class="container text-center mt-5">
+      <div class="motivational">
+        <i class="fas fa-lightbulb me-2"></i>
+        "Every great journey begins with a single message. Let's connect and create something amazing together!"
+      </div>
+    </div>
+
+    <!-- Contact Form Card -->
+    <section id="contact" class="py-3">
+      <div class="container">
+        <div class="contact-card shadow-lg">
+          <h2 class="text-center mb-4 text-primary">Contact Me</h2>
+          <form @submit.prevent="submitForm">
+            <div class="mb-3">
+              <label for="name" class="form-label">Name</label>
+              <input type="text" class="form-control" id="name" x-model="form.name" required />
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" class="form-control" id="email" x-model="form.email" required />
+            </div>
+            <div class="mb-3">
+              <label for="message" class="form-label">Message</label>
+              <textarea class="form-control" id="message" rows="4" x-model="form.message" required></textarea>
+            </div>
+            <template x-if="error">
+              <div class="alert alert-danger py-2" x-text="error"></div>
+            </template>
+            <template x-if="success">
+              <div class="alert alert-success py-2">Thank you! Your message has been sent.</div>
+            </template>
+            <button type="submit" class="btn btn-primary w-100 d-flex align-items-center justify-content-center" x-bind:disabled="loading">
+              <span x-show="!loading">Send Message</span>
+              <span x-show="loading" class="ms-2">
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                Sending...
+              </span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white text-center text-lg-start text-muted mt-5 shadow-sm">
+      <div class="container py-4">
+        <div class="row justify-content-center">
+          <div class="col-md-6 text-center">
+            <h5 class="fw-bold text-primary">M.Anton Jebanesan</h5>
+            <p class="text-muted mt-3 mb-2">
+              Iranaipalai,<br />
+              Mullaitivu.<br />
+              +94 75 093 3641
+            </p>
+            <div class="footer-social d-flex justify-content-center mt-3">
+              <a href="https://www.facebook.com/jebarsan.thatcroos.7/" target="_blank">
+                <i class="fab fa-facebook fa-lg"></i>
+              </a>
+              <a href="https://www.instagram.com/lanka_tamizha/" target="_blank">
+                <i class="fab fa-instagram fa-lg"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="text-center p-3 bg-primary text-white">
+        <span x-text="`© ${year} Developed and Designed by`"></span>
+        |
+        <a class="text-white text-decoration-underline" href="mailto:gwu-hict-2021-43@gwu.ac.lk">M.Anton Jebanesan</a>
+      </div>
+    </footer>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    function contactForm() {
+      return {
+        year: new Date().getFullYear(),
+        form: { name: '', email: '', message: '' },
+        loading: false,
+        success: false,
+        error: '',
+        dark: window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches,
+        async submitForm() {
+          this.error = '';
+          this.success = false;
+          if (!this.form.name || !this.form.email || !this.form.message) {
+            this.error = 'Please fill in all fields.';
+            return;
+          }
+          if (!/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(this.form.email)) {
+            this.error = 'Please enter a valid email address.';
+            return;
+          }
+          this.loading = true;
+          try {
+            await new Promise(r => setTimeout(r, 1200));
+            this.success = true;
+            this.form = { name: '', email: '', message: '' };
+          } catch (e) {
+            this.error = 'Something went wrong. Please try again later.';
+          } finally {
+            this.loading = false;
+          }
+        }
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Home | M.Anton Jebanesan</title>
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Nothing+You+Could+Do&display=swap" rel="stylesheet">
+
+  <!-- Alpine.js -->
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+   <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div x-data="homePage()" :class="dark ? 'dark-mode' : ''">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+      <div class="container">
+        <a class="navbar-brand fw-bold text-primary" href="#">M.Anton Jebanesan</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link active text-primary" href="#">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+            <li class="nav-item"><a class="nav-link" href="../index.html">Projects</a></li>
+            <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+          </ul>
+          <button class="theme-toggle ms-3" @click="toggleDark()" x-bind:aria-label="dark ? 'Switch to light mode' : 'Switch to dark mode'">
+            <span x-show="!dark"><i class="fas fa-moon"></i></span>
+            <span x-show="dark"><i class="fas fa-sun"></i></span>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container my-5">
+      <div class="row align-items-center g-5">
+        <div class="col-12 col-md-6">
+          <div class="bg-white p-5 m-3 shadow-lg border rounded-4 position-relative">
+            <img src="./assets/am.jpg" alt="My photo"
+              class="img-fluid rounded-4 w-100" style="object-fit: cover; aspect-ratio: 1/1;" />
+            <div class="position-absolute bottom-0 start-0 end-0 text-center">
+              <p class="text-secondary pb-3 display-6" style="font-family: 'Nothing You Could Do', cursive;">me</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <section class="fw-normal text-center text-md-start mx-3 my-auto">
+            <p class="h3 fw-bold mb-4">Hello there, <br>I'm M.Anton Jebanesan <span>👋</span></p>
+            <p class="mb-4">
+              With a strong background in BHSc (Hons) in Health Information and Communication Technology at Gampaha Wickramarachchi University of Indigenous Medicine, I enjoy solving problems through technology and bringing ideas to life.
+            </p>
+            <p class="mb-4">
+              My work includes web development, data analysis, and product design. I build responsive websites, create interactive applications, and focus on delivering real-world solutions.
+            </p>
+            <p>
+              I’m always eager to connect with like-minded individuals and explore new opportunities. Feel free to check out my projects or contact me!
+            </p>
+          </section>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+  <footer class="bg-white text-center text-muted mt-5 shadow-sm" data-aos="fade-up">
+    <div class="container py-4">
+      <h5 class="fw-bold text-primary">M.Anton Jebanesan</h5>
+      <p class="mb-2">
+        Iranaipalai, Mullaitivu<br>
+        +94 75 093 3641
+      </p>
+      <div class="d-flex justify-content-center gap-3">
+        <a href="https://github.com/Larksanan/" target="_blank" rel="noopener noreferrer"><i class="fab fa-github fa-lg"></i></a>
+
+        <a href="https://www.facebook.com/jebarsan.thatcroos.7/" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook fa-lg"></i></a>
+        <a href="https://www.instagram.com/lanka_tamizha/" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram fa-lg"></i></a>
+      </div>
+    </div>
+    <div class="bg-primary text-white py-2">
+      <span x-text="`© ${year} Developed and Designed by`">© 2025 Developed and Designed by</span>
+      <a class="text-white text-decoration-underline ms-1" href="mailto:gwu-hict-2021-43@gwu.ac.lk">M.Anton Jebanesan</a>
+    </div>
+  </footer>
+
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    function homePage() {
+      return {
+        year: new Date().getFullYear(),
+        dark: localStorage.getItem('theme') === 'dark' || window.matchMedia('(prefers-color-scheme: dark)').matches,
+        toggleDark() {
+          this.dark = !this.dark;
+          localStorage.setItem('theme', this.dark ? 'dark' : 'light');
+        }
+      }
+    }
+  </script>
+</body>
+</html>
